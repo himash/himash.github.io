@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Bootstrap 4 Blog Template For Developers</title>
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5YK5MXEZF1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5YK5MXEZF1');
+</script>
+
+
+    <title>Write-ups</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog Template">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+       
     <link rel="shortcut icon" href="favicon.ico"> 
     
     <!-- FontAwesome JS-->
     <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
-    
-    <!-- Plugin CSS -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/monokai-sublime.min.css">
     
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
@@ -26,7 +36,7 @@
 <body>
     
     <header class="header text-center">	    
-	    <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Hacking <br> Reverse Engineering</a></h1>
+	    <h1 class="blog-name pt-lg-1 mb-0"><a href="index.html">Hacking  </a></h1>
         
 	    <nav class="navbar navbar-expand-lg navbar-dark" >
            
@@ -39,47 +49,175 @@
 				    <img class="profile-image mb-3 rounded mx-auto" src="assets/images/profile.png" alt="image" >			
 					
 					<div class="bio mb-3">"Technical Problems Can Have Artistic Solutions"<br>
-                                 - Jon Erickson The Art of Exploitation <br> <br> I do Security Research </div><!--//bio-->
+                                 - Jon Erickson The Art of Exploitation </div><!--//bio-->
 					<ul class="social-list list-inline py-3 mx-auto">
+
 			            <li class="list-inline-item"><a href="https://twitter.com/UnknownHimash"><i class="fab fa-twitter fa-fw"></i></a></li>
-			            
-			            <li class="list-inline-item"><a href="https://github.com/himash"><i class="fab fa-github-alt fa-fw"></i></a></li>
 			           
+			            <li class="list-inline-item"><a href="https://github.com/himash"><i class="fab fa-github-alt fa-fw"></i></a></li>
+			            
 			        </ul><!--//social-list-->
-			        <hr> 
+			        
 				</div><!--//profile-section-->
 				
 				<ul class="navbar-nav flex-column text-left">
 					<li class="nav-item">
 					    <a class="nav-link" href="index.html"><i class="fas fa-home fa-fw mr-2"></i>Blog Home <span class="sr-only">(current)</span></a>
 					</li>
-					
 					<li class="nav-item">
-					    <a class="nav-link" href="about.html"><i class="fas fa-user fa-fw mr-2"></i>About Me</a>
+					    <a class="nav-link" href="publications.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Publications</a>
 					</li>
+
+						<li class="nav-item">
+					    <a class="nav-link" href="projects.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Projects</a>
+					</li>
+					<li class="nav-item active">
+					    <a class="nav-link" href="write-up.html"><i class="fas fa-user fa-fw mr-2"></i>Write-ups</a>
+					</li>
+
+					<li class="nav-item">
+					    <a class="nav-link" href="tools.html"><i class="fas fa-user fa-fw mr-2"></i>Tools</a>
+					</li>
+
+					<li class="nav-item active">
+					    <a class="nav-link" href="ack.html"><i class="fas fa-user fa-fw mr-2"></i>Acknowledgements</a>
+					</li>
+
 				</ul>
 				
 				
 			</div>
 		</nav>
     </header>
+
+
+    <!-----------------------------------Header and stuff Ends Here-------------------------------------------------->
+
+
+
+
+
+    <!-------------------------------------Article Starts Here --------------------------------------------------------------->
     
     <div class="main-wrapper">
 	    
 	    <article class="blog-post px-3 py-5 p-md-5">
 		    <div class="container">
 			    <header class="blog-post-header">
-				    <h2 class="title mb-2">Why Every Developer Should Have A Blog</h2>
-				    <div class="meta mb-3"><span class="time">5 min read</span></div>
+				    <h2 class="title mb-2">ScriptKiddie - HTB</h2>
+				    
+
 			    </header>
 			    
 			    <div class="blog-post-body">
+
+			    	<!-----PICTURE
 				    <figure class="blog-banner">
 				        <a href="https://made4dev.com"><img class="img-fluid" src="assets/images/blog/blog-post-banner.jpg" alt="image"></a>
+
+				        
 				        <figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a></figcaption>
 				    </figure>
-				    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
-				    
+				    -------------------------------------------------------->
+
+				    <p>
+
+				    	<br>
+                     
+
+				    	The goal of this write-up is to provide an instinct and supporting materials to work on the machine without 
+				      exposing the solution.
+				    	usual walk-through and write-ups are aimed to solve the box but this is to give an idea how to 
+				    	solve the box without directly exposing the solution.
+				    	this type of walk through will help to solve the box with certain level of information. 
+				    	i would like to provide a methodology or instinct that you may use to solve
+				    	the boxes.
+
+				      
+
+				      <br>
+				      <br>
+	
+				      The main goal of CTFs and specially Hack the Box platform is to provide hands on experience and knowledge,
+				      it is not about the solution it is about the gain of skill and knowledge.
+				      owning the machine and be on ranking does not give anything if you are not gained anything
+				      from the machine. not only the solution actually the exploits and vulnerabilities will
+				      give much more information which will be useful in all aspects.
+				      I usually not only enjoy the solution of the machine i prioritize the path of the solution
+				      and the exploits that used to aid the solution.
+
+				      <br>
+              
+              The point of scanning and initial information gathering is to point our direction of instinct to a certain
+              path to think about all the possibilities. 
+              lets start from nmap scan.
+
+              <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/sk_nmap.png" alt="image"></a>
+
+				      </figure>
+              
+              Initial scan may done on hundred different ways, you may ask which type of scan should be done at first phase.
+              we can maintain a scanning methodology which will cover all ports, tcp, udp, script scanning and etc.
+              but which will take time to point into one direction. if you are engaged with penetration testing assessment that would be ideal to maintain a "master" scan routine, however in CTFs it would be efficient to step up to the next level of
+              scanning only if you not found any grip at least for the easy machines/boxes. from the above scan result it was found that
+              port 22 and 5000 opened, generally ssh service also have vulnerabilities to exploit but here picking port 5000
+              would be appropriate since we know basically this is a intentionally vulnerable box and port 5000 giving the below
+              interface which we can relate with the machine name 'script kiddie' 
+              <br> 
+
+
+
+              <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/sk_interface.png" alt="image"></a>
+
+				      </figure>      
+              
+              Web application is presented here with the tools, when inspecting web application first look at the source code
+              where we can extract some more information which we can use. inspecting upon the source code, there is no
+              any possibilities or chance to exploit web technologies such as PHP, Wordpress and etc.
+              based on the analysis now we can move on to the next possibility to exploit available tools on the application.
+
+               <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/sk_source.png" alt="image"></a>
+
+				      </figure>    
+
+				      Before being jump into the exploitation part need to verify that these tools are working properly,
+				      after that first starts with nmap. during the search there is no any available exploits to run against nmap,
+				      so move on to the next one which is metasploit-framework.   
+
+				       <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/sk_nmap_vul.png" alt="image"></a>
+
+				      </figure> 
+
+				      There is a vulnerability for the metasploit-framework (CVE-2020-7384)
+				      <br>
+				      <a href=https://www.exploit-db.com/exploits/49491> https://www.exploit-db.com/exploits/49491 </a>
+              <br>
+              let's look at this vulnerability.
+              <br>
+              <a href=
+              https://github.com/rapid7/metasploit-framework/pull/14288/commits/d1528cc0aa48ac667304f1e5116a784fe2dc8f15>
+            https://github.com/rapid7/metasploit-framework/pull/14288/commits/d1528cc0aa48ac667304f1e5116a784fe2dc8f15 </a>
+              <br>
+              <a href=https://github.com/rapid7/metasploit-framework/pull/14331> https://github.com/rapid7/metasploit-framework/pull/14331</a>
+              <br>
+              
+
+
+
+
+				    </p>
+
+
+
+				    <!--------------------------------------------------------------------------------------------- Coding section
 				    <h3 class="mt-5 mb-3">Code Block Example</h3>
 				    <p>You can get more info at <a href="https://highlightjs.org/" target="_blank">https://highlightjs.org/</a>. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
 				    <pre>
@@ -101,129 +239,24 @@ function $initHighlight(block, cls) {
 export  $initHighlight;
 					    </code>
 				    </pre>
-				    <h3 class="mt-5 mb-3">Typography</h3>
-				    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-				    <h5 class="my-3">Bullet Points:</h5>
-				    <ul class="mb-5">
-					  <li class="mb-2">Lorem ipsum dolor sit amet consectetuer.</li>
-					  <li class="mb-2">Aenean commodo ligula eget dolor.</li>
-					  <li class="mb-2">Aenean massa cum sociis natoque penatibus.</li>
-					</ul>
-					<ol class="mb-5">
-					  <li class="mb-2">Lorem ipsum dolor sit amet consectetuer.</li>
-					  <li class="mb-2">Aenean commodo ligula eget dolor.</li>
-					  <li class="mb-2">Aenean massa cum sociis natoque penatibus.</li>
-					</ol>
-					<h5 class="my-3">Quote Example:</h5>
-					<blockquote class="blockquote m-lg-5 py-3 pl-4 px-lg-5">
-						<p class="mb-2">You might not think that programmers are artists, but programming is an extremely creative profession. It's logic-based creativity.</p>
-						<footer class="blockquote-footer">John Romero</footer>
-					</blockquote>
-					
-					<h5 class="my-3">Table Example:</h5>
-					<table class="table table-striped my-5">
-						<thead>
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">First</th>
-								<th scope="col">Last</th>
-								<th scope="col">Handle</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">1</th>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>@fat</td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>Larry</td>
-								<td>the Bird</td>
-								<td>@twitter</td>
-							</tr>
-						</tbody>
-					</table>
-					
-					<h5 class="mb-3">Embed A Tweet:</h5>
-					
-					<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">1969:<br>-what&#39;re you doing with that 2KB of RAM?<br>-sending people to the moon<br><br>2017:<br>-what&#39;re you doing with that 1.5GB of RAM?<br>-running Slack</p>&mdash; I Am Devloper (@iamdevloper) <a href="https://twitter.com/iamdevloper/status/926458505355235328?ref_src=twsrc%5Etfw">November 3, 2017</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+				  Ending here --------------------------------------------------------------------------------------------> 
 
-				    
-				    <h3 class="mt-5 mb-3">Video Example</h3>
-				    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. </p>
+					
 
-				    <div class="embed-responsive embed-responsive-16by9">
-					   <iframe width="560" height="315" src="https://www.youtube.com/embed/hnCmSXCZEpU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>					
-					</div>
+					
 				   
 			    </div>
 				    
+
+				  <!--------------------------------------------------------------------------------- Navigation section  
 			    <nav class="blog-nav nav nav-justified my-5">
 				  <a class="nav-link-prev nav-item nav-link rounded-left" href="index.html">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
 				  <a class="nav-link-next nav-item nav-link rounded-right" href="blog-list.html">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
 				</nav>
-				
-				<div class="blog-comments-section">
-					<div id="disqus_thread"></div>
-					<script>
-					    /**
-					     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT 
-					     *  THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR 
-					     *  PLATFORM OR CMS.
-					     *  
-					     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: 
-					     *  https://disqus.com/admin/universalcode/#configuration-variables
-					     */
-					    /*
-					    var disqus_config = function () {
-					        // Replace PAGE_URL with your page's canonical URL variable
-					        this.page.url = PAGE_URL;  
-					        
-					        // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-					        this.page.identifier = PAGE_IDENTIFIER; 
-					    };
-					    */
-					    
-					    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
-					        var d = document, s = d.createElement('script');
-					        
-					        // IMPORTANT: Replace 3wmthemes with your forum shortname!
-					        s.src = 'https://3wmthemes.disqus.com/embed.js';
-					        
-					        s.setAttribute('data-timestamp', +new Date());
-					        (d.head || d.body).appendChild(s);
-					    })();
-					</script>
-					<noscript>
-					    Please enable JavaScript to view the 
-					    <a href="https://disqus.com/?ref_noscript" rel="nofollow">
-					        comments powered by Disqus.
-					    </a>
-					</noscript>
-				</div><!--//blog-comments-section-->
-				
-		    </div><!--//container-->
+				-----------------------------------------------------------------------------------------------------------> 
+
 	    </article>
-	    
-	    <section class="promo-section theme-bg-light py-5 text-center">
-		    <div class="container">
-			    <h2 class="title">Promo Section Heading</h2>
-			    <p>You can use this section to promote your side projects etc. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
-                <figure class="promo-figure">
-			        <a href="https://made4dev.com" target="_blank"><img class="img-fluid" src="assets/images/promo-banner.jpg" alt="image"></a>
-			    </figure>
-		    </div><!--//container-->
-	    </section><!--//promo-section-->
 	    
 
     
@@ -244,9 +277,7 @@ export  $initHighlight;
 
     <!-- Custom JS -->
     <script src="assets/js/blog.js"></script>
-    
-    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
-    <script src="assets/js/demo/style-switcher.js"></script>     
+      
     
 
 </body>
