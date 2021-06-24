@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5YK5MXEZF1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5YK5MXEZF1');
+</script>
+
+
+    <title>Blog-Post</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+    <link rel="shortcut icon" href="favicon.ico"> 
+    
+    <!-- FontAwesome JS-->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+    
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
+    
+
+</head> 
+
+<body>
+    
+    <header class="header text-center">	    
+	    <h1 class="blog-name pt-lg-1 mb-0"><a href="index.html">Adventures with Bits  </a></h1>
+        
+	    <nav class="navbar navbar-expand-lg navbar-dark" >
+           
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div id="navigation" class="collapse navbar-collapse flex-column" >
+				<div class="profile-section pt-3 pt-lg-0">
+				    <img class="profile-image mb-3 rounded mx-auto" src="assets/images/profile.png" alt="image" >			
+					
+					<div class="bio mb-3">"Technical Problems Can Have Artistic Solutions"<br>
+                                 - Jon Erickson The Art of Exploitation </div><!--//bio-->
+					<ul class="social-list list-inline py-3 mx-auto">
+
+			            <li class="list-inline-item"><a href="https://twitter.com/UnknownHimash"><i class="fab fa-twitter fa-fw"></i></a></li>
+			           
+			            <li class="list-inline-item"><a href="https://github.com/himash"><i class="fab fa-github-alt fa-fw"></i></a></li>
+			            
+			        </ul><!--//social-list-->
+			        
+				</div><!--//profile-section-->
+				
+				<ul class="navbar-nav flex-column text-left">
+					<li class="nav-item">
+					    <a class="nav-link" href="index.html"><i class="fas fa-home fa-fw mr-2"></i>Blog Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="publications.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Publications</a>
+					</li>
+
+						<li class="nav-item">
+					    <a class="nav-link" href="projects.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Projects</a>
+					</li>
+					<li class="nav-item active">
+					    <a class="nav-link" href="write-up.html"><i class="fas fa-user fa-fw mr-2"></i>Write-ups</a>
+					</li>
+
+					<li class="nav-item">
+					    <a class="nav-link" href="tools.html"><i class="fas fa-user fa-fw mr-2"></i>Tools</a>
+					</li>
+
+					<li class="nav-item active">
+					    <a class="nav-link" href="ack.html"><i class="fas fa-user fa-fw mr-2"></i>Acknowledgements</a>
+					</li>
+
+				</ul>
+				
+				
+			</div>
+		</nav>
+    </header>
+
+
+    <!-----------------------------------Header and stuff Ends Here-------------------------------------------------->
+
+
+
+
+
+    <!-------------------------------------Article Starts Here --------------------------------------------------------------->
+    
+    <div class="main-wrapper">
+	    
+	    <article class="blog-post px-3 py-5 p-md-5">
+		    <div class="container">
+			    <header class="blog-post-header">
+				    <h2 class="title mb-2">CSRF - False Positives</h2>
+				    
+
+			    </header>
+			    
+			    <div class="blog-post-body">
+
+			    	<!-----PICTURE
+				    <figure class="blog-banner">
+				        <a href="https://made4dev.com"><img class="img-fluid" src="assets/images/blog/blog-post-banner.jpg" alt="image"></a>
+
+				        
+				        <figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a></figcaption>
+				    </figure>
+				    -------------------------------------------------------->
+<!---------------------------------------------------------------------Article Start-------------------------------------->
+				    <p>
+
+				    	<br>
+                     When testing CSRF(Cross Site Request Forgery) vulnerabilities most of the testers use Burpsuite engagement tools which will generate CSRF POC to test against the target.
+
+                     <br>
+
+                     <figure class="blog-banner">
+
+    				        <a><img class="img-fluid" src="assets/images/article-1/AR-1-CSRF.png" alt="image"></a>
+
+				            </figure>
+
+				            <br>
+
+				            While doing the testing in most cases application testers just check with burpsuite POC to verify if target is vulnerable or not. however in some cases this could be a false positive due to how developer handles the application CSRF control implementations. to demonstrate this i would like to explain a practical case where i was encountered the similar situation. during the test i was decided the application is vulnerable to CSRF which will change the user account password. but usually i do further analysis and manual analysis to verify any vulnerability which is raised by a tool.
+				            <br>
+				            <br>
+				            when i tested the application CSRF with burpsuite 'Test in browser' option, burpsuite will give URL to paste in the browser to view the response of that particular CSRF request.
+				            <br>
+				            <br>
+
+
+                    <figure class="blog-banner">
+
+    				        <a><img class="img-fluid" src="assets/images/article-1/AR-1-TIB.png" alt="image"></a>
+
+				            </figure>
+
+				            <br>
+
+				            When i testing the CSRF in this way, i can change the password of the user account. which means application is vulnerable to CSRF vulnerability which will change the user account password. however when i testing this with generated HTML page the vulnerability is not exploitable after first attempt and not able to change the user password after first attempt !.
+				            strange right ?. so i just checked at the 'Referer' header. (but still there is something suspicious because i can change the password at first attempt in generated HTML!) The reason to test 'Referer' header is because of the generated POC of burpsuite does not contains 'Referer' header but 'Test in browser' option will request with 'Referer' header.
+				            to confirm this i intercepted the generated HTML request with burp proxy and added the 'Referer' header.
+
+
+				            <br>
+				            <br>
+
+
+                    <figure class="blog-banner">
+
+    				        <a><img class="img-fluid" src="assets/images/article-1/AR-1-HTML.png" alt="image"></a>
+
+				            </figure>
+
+				            <br>
+
+				            After testing 'Referer' header, it was observed that header is not the problem, meanwhile the user account password is changing when i go through the 'Test in browser' option but password is not changing when i using the generated HTML after first attempt. so went through the application source code to find out what type of CSRF prevention is in use.
+				            unfortunately not able to find anything related to CSRF prevention. after some period i just checked the generated CSRF POC of the burpsuite, suddenly i just noted that there is a parameter '1620213050393' passing through the URL GET request for the password change.
+
+				            <pre>
+				            	<code>
+
+GET /P1/Passwords/PasswordReset.aspx?newPassword1=Test%40777&newPassword2=Test%40777&_=1620213050393
+
+				            	</code>
+				            </pre>
+
+
+				            By analyzing this parameter i came to a conclusion that the application developer generating this value to check the password change request authenticity. the reason 'Test in browser' option flagged as CSRF is, the value is newly generated to verify password reset request hence it is a legitimate request, however in HTML POC option worked only at first attempt because the generated value is only legitimate when it's used at first time, the second and further attempts does not contains the newly generated value for that request. 
+
+				            <br>
+				            <br>
+				            so basically in real world scenario, an attacker need to send this payload to the victim to successfully compromise the user account with password change. however because of this 'value' parameter, password change GET request will be denied at server end. so the application is not vulnerable to CSRF at this point. i never go further to bypass this control however what i want to say is, when testing with tools even like bursuite, always stick to manual verification and analysis of the vulnerability, because control and prevention mechanisms may vary to each and every developer.
+
+
+
+
+
+				    <!--------------------------------------------Article End ------------------------------------------------------>
+
+
+
+				    <!--------------------------------------------------------------------------------------------- Coding section
+				    <h3 class="mt-5 mb-3">Code Block Example</h3>
+				    <p>You can get more info at <a href="https://highlightjs.org/" target="_blank">https://highlightjs.org/</a>. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
+				    <pre>
+					    <code>
+function $initHighlight(block, cls) {
+  try {
+    if (cls.search(/\bno\-highlight\b/) != -1)
+      return process(block, true, 0x0F) +
+             ` class="${cls}"`;
+  } catch (e) {
+    /* handle exception */
+  }
+  for (var i = 0 / 2; i < classes.length; i++) {
+    if (checkCondition(classes[i]) === undefined)
+      console.log('undefined');
+  }
+}
+
+export  $initHighlight;
+					    </code>
+				    </pre>
+
+				  Ending here --------------------------------------------------------------------------------------------> 
+
+					
+
+					
+				   
+			    </div>
+				    
+
+				  <!--------------------------------------------------------------------------------- Navigation section  
+			    <nav class="blog-nav nav nav-justified my-5">
+				  <a class="nav-link-prev nav-item nav-link rounded-left" href="index.html">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+				  <a class="nav-link-next nav-item nav-link rounded-right" href="blog-list.html">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+				</nav>
+				-----------------------------------------------------------------------------------------------------------> 
+
+	    </article>
+	    
+
+    
+    </div><!--//main-wrapper-->
+    
+
+
+
+    
+       
+    <!-- Javascript -->          
+    <script src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script src="assets/plugins/popper.min.js"></script> 
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+    
+    <!-- Page Specific JS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="assets/js/blog.js"></script>
+      
+    
+
+</body>
+</html> 
+
